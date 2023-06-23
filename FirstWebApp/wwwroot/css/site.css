@@ -1,0 +1,50 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    background-color: burlywood;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: burlywood;
+}
+
+.TicTacToe-Board {
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+#Start-Button {
+    margin-top: 15px;
+}
+
+#Finish-Button {
+    margin-top: 15px;
+}
+
+td {
+    height: 80px;
+    width: 80px;
+    border: 1px solid black;
+}
+
+.TicTacToeButton {
+    font-size: 20px;
+    height: 80px;
+    width: 80px;
+    border: 1px dotted black;
+}

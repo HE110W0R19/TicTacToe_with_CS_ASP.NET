@@ -1,0 +1,65 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FirstWebApp
+build_property.RootNamespace = FirstWebApp
+build_property.ProjectDir = C:\Users\TuF\Desktop\P\ШАГ\ДЗ ШАГ\ДЗ ASP.NET (C#)\ДЗ 5\FirstWebApp\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\TuF\Desktop\P\ШАГ\ДЗ ШАГ\ДЗ ASP.NET (C#)\ДЗ 5\FirstWebApp
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/Home/GamePage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHYW1lUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/Home/Lobby.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2JieS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/Home/LobbyTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2JieVRhYmxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/Home/SessionExpiration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXNzaW9uRXhwaXJhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/Home/WinnerPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxXaW5uZXJQYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Desktop/P/ШАГ/ДЗ ШАГ/ДЗ ASP.NET (C\#)/ДЗ 5/FirstWebApp/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-sdicnf6ql1

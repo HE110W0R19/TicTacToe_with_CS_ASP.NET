@@ -1,0 +1,34 @@
+﻿@model LobbyPageModel
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+	.lobbyTable{
+		width: 100%;
+	}
+
+	.lobbyTable tr td{
+		border: 1px	solid black;
+	}
+</style>
+
+<div align="center">
+    <h3>
+        @{@Model.CurrentPlayerName}, добро пожаловать на хату, фраерок ;) 
+    </h3>
+</div>
+
+<table class="lobbyTable">
+	<tr>
+		@for (int iter = 0; iter < Model.Tables.Length; ++iter)
+		{
+			<td>
+				@await Html.PartialAsync("LobbyTable", Model.Tables[iter])
+			</td>
+		}
+	</tr>
+</table>

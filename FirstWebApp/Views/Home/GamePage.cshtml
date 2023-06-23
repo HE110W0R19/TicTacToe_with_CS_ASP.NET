@@ -1,0 +1,32 @@
+﻿@using FirstWebApp.HTMLhelpers
+@model FirstWebApp.Models.TicTacToeModel
+@{
+    ViewData["Title"] = "Game Page";
+}
+
+<div class="text-center" align="center">
+    <form method="post" asp-area="" asp-controller="Home" asp-action="GamePage">
+    <table class="TicTacToe-Board">
+            @for(int row = 0; row < 3; ++row)
+            {
+                <tr>
+                    @for(int col = 0; col < 3; ++col)
+                    {
+                        <td>
+                            @{var index = row * 3 + col;}
+                            <form method="post" asp-area="" asp-controller="Home" asp-action="GamePage">
+								<input class="TicTacToeButton" type="submit" value="@Model.boardRandom[index]">
+								<input type="hidden" name="index" value="@index">
+							</form>
+                        </td>
+                    }
+                </tr>
+            }
+    </table>
+    </form>
+    <h1 class="display-4">@Model.makeMoveName makes a move</h1>
+    <form method="post" asp-area="" asp-controller="Home" asp-action="refreshGamePage">
+    <input type="submit" value="Refresh"/>
+    <button id="Finish-Button">Finish game</button>
+    </form>
+</div>
