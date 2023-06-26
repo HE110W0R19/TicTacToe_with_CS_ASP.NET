@@ -2,6 +2,7 @@
 using FirstWebApp.Models;
 using FirstWebApp.ServerDatabase;
 using FirstWebApp.Session;
+using FirstWebApp.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -21,6 +22,34 @@ namespace FirstWebApp.Controllers
 
             BoardModel.restart();
             return View("Index");
+        }
+
+        [HttpPost]
+        public IActionResult GoToGame(Guid tableGuid, int field)
+        {
+            this.SetEncodedFieldFromSession(field);
+            this.SetTableGuidFromSession(tableGuid);
+
+            return RedirectToAction("GamePage");
+        }
+
+        [HttpGet]
+        [Route("Home/GamePage")]
+        public IActionResult GetGamePage() 
+        {
+            var playerName = this.GetCurrentPlayerNameFromSession();
+            var field = this.GetEncodedFieldFromSession();
+            var tableGuid = this.GetTableGuidFromSession();
+
+            if(playerName == null || field == null || tableGuid == null)
+            {
+                return RedirectToAction("SessionExpiration");
+            }
+
+            BoardModel.boardInfo.boardRandom = TicTacToeUtilities.DecodeField((int)field).Cast<char>().ToArray();
+            BoardModel.boardInfo.makeMoveName = playerName;
+
+            return View("GamePage", BoardModel.boardInfo);
         }
 
         [HttpPost]

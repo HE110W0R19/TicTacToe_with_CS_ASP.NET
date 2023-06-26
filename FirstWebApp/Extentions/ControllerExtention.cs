@@ -19,7 +19,29 @@ namespace FirstWebApp.Extentions
             
             controller.HttpContext.Session.SetString(SessionVariables.CurrentPlayerGuid, playerGuid.ToString());
         }
-    }
+
+		public static int? GetEncodedFieldFromSession(this Controller controller)
+		{
+			return controller.HttpContext.Session.GetInt32(SessionVariables.EncodedField);
+		}
+
+		public static void SetEncodedFieldFromSession(this Controller controller, int encodedField)
+		{
+            controller.HttpContext.Session.SetInt32(SessionVariables.EncodedField, encodedField);
+		}
+
+		public static Guid? GetTableGuidFromSession(this Controller controller)
+		{
+			var tableGuid =  controller.HttpContext.Session.GetString(SessionVariables.TableGuid);
+
+			return tableGuid == null ? null : new Guid(tableGuid.ToString());
+		}
+
+		public static void SetTableGuidFromSession(this Controller controller, Guid gameGuid)
+		{
+			controller.HttpContext.Session.SetString(SessionVariables.TableGuid, gameGuid.ToString());
+		}
+	}
 }
 
 /*

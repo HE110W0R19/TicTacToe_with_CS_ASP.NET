@@ -215,3 +215,34 @@ C:\Users\TuF\Desktop\P\ШАГ\ДЗ ШАГ\ДЗ ASP.NET (C#)\ДЗ 5\FirstWebApp\o
 C:\Users\TuF\Desktop\P\ШАГ\ДЗ ШАГ\ДЗ ASP.NET (C#)\ДЗ 5\FirstWebApp\obj\Debug\net7.0\FirstWebApp.pdb
 C:\Users\TuF\Desktop\P\ШАГ\ДЗ ШАГ\ДЗ ASP.NET (C#)\ДЗ 5\FirstWebApp\obj\Debug\net7.0\FirstWebApp.genruntimeconfig.cache
 C:\Users\TuF\Desktop\P\ШАГ\ДЗ ШАГ\ДЗ ASP.NET (C#)\ДЗ 5\FirstWebApp\obj\Debug\net7.0\ref\FirstWebApp.dll
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\appsettings.json
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\FirstWebApp.staticwebassets.runtime.json
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\FirstWebApp.exe
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\FirstWebApp.deps.json
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\FirstWebApp.runtimeconfig.json
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\FirstWebApp.dll
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\FirstWebApp.pdb
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.csproj.AssemblyReference.cache
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.AssemblyInfoInputs.cache
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.AssemblyInfo.cs
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.csproj.CoreCompileInputs.cache
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.RazorAssemblyInfo.cache
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.RazorAssemblyInfo.cs
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\staticwebassets\msbuild.FirstWebApp.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\staticwebassets\msbuild.build.FirstWebApp.props
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.FirstWebApp.props
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.FirstWebApp.props
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\scopedcss\bundle\FirstWebApp.styles.css
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\scopedcss\projectbundle\FirstWebApp.bundle.scp.css
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.dll
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\refint\FirstWebApp.dll
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.pdb
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.genruntimeconfig.cache
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\ref\FirstWebApp.dll

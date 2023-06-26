@@ -5,3 +5,59 @@
 *@
 @{
 }
+<style>
+	.GameLobbyTable{
+		width: 100%;
+	}
+    .TicTacToe-LobbyBoard{
+        display: inline;
+    }
+</style>
+
+<table class="GameLobbyTable">
+    <tr>
+        <td>
+            X player: @Model.Game.PlayerXName
+        </td>
+    </tr>
+    <tr>
+        <td>
+            O player: @Model.Game.PlayerOName
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Turn: Player (@Model.Game.CurrentTurnSimbol) | 
+            Turn count: @Model.Game.turnCounter
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class ="TicTacToe-LobbyBoard">
+            @for(int row = 0; row < 3; ++row)
+            {
+                <tr>
+                    @for(int col = 0; col < 3; ++col)
+                    {
+                        <td>
+                            @{var index = row * 3 + col;}
+                            <span>
+                                @Model.Game.DecodedField[index]
+                            </span>
+                        </td>
+                    }
+                </tr>
+            }
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form method="post">
+                <input type="hidden" name="tableGuid" value="@Model.TabelGuid"/>
+                <input type="hidden" name="field" value="@Model.Game.EncodedField" />
+				<button asp-controller="Home" asp-action="GoToGame">Зайти на хату</button>
+            </form>
+        </td>
+    </tr>
+</table>

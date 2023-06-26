@@ -1,4 +1,5 @@
 ﻿using FirstWebApp.ServerDatabase;
+using FirstWebApp.Utilities;
 
 namespace FirstWebApp.Models
 {
@@ -9,31 +10,33 @@ namespace FirstWebApp.Models
 		public Guid PlayerTurnGuid { get; private set; }
 
 		public int EncodedField { get; private set; }
-		public char[] DecodedField => DecodeField();
+		public char[] DecodedField = new char[9];
+		public char CurrentTurnSimbol => PlayerTurnGuid == PlayerXGuid ? 'X' : 'O';
+		public int turnCounter => DecodedField.Count(x => x != ' ');
+
 		public string PlayerOName => Database.Users[PlayerOGuid];
 		public string PlayerXName => Database.Users[PlayerXGuid];
 
-		private Dictionary<int, char> _ValueIndex = new Dictionary<int, char>
+		public void SetField(int encodedValue)
 		{
-			{0, ' ' },
-			{1, 'X' },
-			{2, 'O' }
-		};
-
-		public char[] DecodeField()
-		{
-			var result = new char[9];
-			var encodedField = EncodedField;
-
-			for(int i = 8; i >= 0; --i)
+			if (encodedValue == EncodedField)
 			{
-				var encodedCell = encodedField - (encodedField >> 2 << 2);
-				encodedField >>= 2;
-
-				result[i] = _ValueIndex[encodedCell];
+				throw new ArgumentException($"\"Нельзя изменить неизменяемое\"");
 			}
 
-			return result;
+			EncodedField = encodedValue;
+			DecodedField = TicTacToeUtilities.DecodeField(encodedValue);
+		}
+
+		public void SetField(char[] decodedValue)
+		{
+			if (new string(decodedValue) == new string(DecodedField))
+			{
+				throw new ArgumentException($"\"Нельзя изменить неизменяемое\"");
+			}
+
+			EncodedField = TicTacToeUtilities.EncodeField(decodedValue);
+			DecodedField = decodedValue;
 		}
 
 		public GameInfo(Guid playerXGuid, Guid playerOGuid, Guid playerTurnGuid)
@@ -42,9 +45,34 @@ namespace FirstWebApp.Models
 			PlayerOGuid = playerOGuid;
 			PlayerTurnGuid = playerTurnGuid;
 
-			//X,O,X,O, ,O, ,X, ;
+		}
 
-			EncodedField = 0b_01_10_01_10_00_10_00_01_00;
+		public GameInfo()
+		{
+			PlayerXGuid = Guid.Empty;
+			PlayerOGuid = Guid.Empty;
+			PlayerTurnGuid = Guid.Empty;
+			CreateRandomBoard();
+		}
+
+		private void CreateRandomBoard()
+		{
+			var random = new Random();
+			var board = new char[9] {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+
+			for (int i = 0; i < board.Length; i++)
+			{
+				if (random.Next(0, 9) % 2 == 0)
+				{
+					board[random.Next(0, 9)] = 'O';
+				}
+				else
+				{
+					board[random.Next(0, 9)] = 'X';
+				}
+			}
+
+			SetField(board);
 		}
 	}
 }

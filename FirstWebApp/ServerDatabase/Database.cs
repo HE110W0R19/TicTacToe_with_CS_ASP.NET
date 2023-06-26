@@ -14,6 +14,8 @@ namespace FirstWebApp.ServerDatabase
             {
                 Tables[Guid.NewGuid()] = null;
             }
+
+            Users[Guid.Empty] = "Никаво";
         }
     }
 }

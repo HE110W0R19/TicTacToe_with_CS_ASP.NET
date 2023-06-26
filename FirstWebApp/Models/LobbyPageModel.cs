@@ -22,10 +22,16 @@ namespace FirstWebApp.Models
 
 	public class LobbyTableModel
 	{
-		private readonly Guid _tabelGuid;
+		public Guid TabelGuid { get; private set; }
+		public Guid GameGuid { get; private set; }
+
+		public GameInfo Game;
 		public LobbyTableModel(Guid tabelGuid) 
 		{
-			_tabelGuid = tabelGuid;
+			TabelGuid = tabelGuid;
+			GameGuid = Database.Tables[TabelGuid] ?? Guid.Empty;
+		
+			Game = GameGuid == Guid.Empty ? new GameInfo() : Database.Games[GameGuid];
 		}
 	}
 }

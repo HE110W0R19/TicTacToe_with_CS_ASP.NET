@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\TuF\\Desktop\\P\\ШАГ\\ДЗ ШАГ\\ДЗ ASP.NET (C#)\\ДЗ 5\\FirstWebApp\\FirstWebApp.csproj": {}
+    "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\FirstWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\TuF\\Desktop\\P\\ШАГ\\ДЗ ШАГ\\ДЗ ASP.NET (C#)\\ДЗ 5\\FirstWebApp\\FirstWebApp.csproj": {
+    "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\FirstWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\TuF\\Desktop\\P\\ШАГ\\ДЗ ШАГ\\ДЗ ASP.NET (C#)\\ДЗ 5\\FirstWebApp\\FirstWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\FirstWebApp.csproj",
         "projectName": "FirstWebApp",
-        "projectPath": "C:\\Users\\TuF\\Desktop\\P\\ШАГ\\ДЗ ШАГ\\ДЗ ASP.NET (C#)\\ДЗ 5\\FirstWebApp\\FirstWebApp.csproj",
+        "projectPath": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\FirstWebApp.csproj",
         "packagesPath": "C:\\Users\\TuF\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\TuF\\Desktop\\P\\ШАГ\\ДЗ ШАГ\\ДЗ ASP.NET (C#)\\ДЗ 5\\FirstWebApp\\obj\\",
+        "outputPath": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\TuF\\AppData\\Roaming\\NuGet\\NuGet.Config",
