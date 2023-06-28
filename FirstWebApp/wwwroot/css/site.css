@@ -15,17 +15,49 @@ html {
 html {
     position: relative;
     min-height: 100%;
-    background-color: burlywood;
+    background-color: white;
+    background-image: url(/backgrounds/TicTacToeBackground.jpg);
 }
 
 body {
     margin-bottom: 60px;
-    background-color: burlywood;
+    background-color: white;
+    background-image: url(/backgrounds/TicTacToeBackground.jpg);
+}
+
+.GameLobbyTable{
+    background-color:ghostwhite;
 }
 
 .TicTacToe-Board {
-    border: 1px solid black;
+    border: 3px solid white;
+    margin: auto;
+}
+
+.lobby-form{
+    background-color: lightgray;
+    border: 3px solid white;
+    margin: auto;
+}
+
+.Name-input-form{
     margin: 0 auto;
+    height: 65px;
+    width: 300px;
+    background-color: lightgrey;
+}
+
+.LoseSession-window {
+    padding 5px;
+    background-color: lightgray;
+}
+
+.text-center {
+    margin: auto;
+    height: 420px;
+    width:420px;
+    padding: 20px;
+    background-color: lightgray;
 }
 
 #Start-Button {
@@ -39,7 +71,7 @@ body {
 td {
     height: 80px;
     width: 80px;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .TicTacToeButton {

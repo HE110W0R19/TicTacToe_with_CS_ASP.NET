@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uQgyQuIGD0u23FxmjeOPrkp/IQsANWqIeKhLzILXKaA=",
+  "Hash": "SkO3ZHnldyrV5Wg1IX7+QBqV+2kWjSzDuNcV1NJWA+k=",
   "Source": "FirstWebApp",
   "BasePath": "_content/FirstWebApp",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\FirstWebApp.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\backgrounds\\TicTacToeBackground.jpg",
+      "SourceId": "FirstWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\",
+      "BasePath": "_content/FirstWebApp",
+      "RelativePath": "backgrounds/TicTacToeBackground.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\backgrounds\\TicTacToeBackground.jpg"
     },
     {
       "Identity": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\css\\site.css",
