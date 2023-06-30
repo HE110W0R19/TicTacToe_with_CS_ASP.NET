@@ -20,6 +20,13 @@ namespace FirstWebApp.Extentions
             controller.HttpContext.Session.SetString(SessionVariables.CurrentPlayerGuid, playerGuid.ToString());
         }
 
+		public static Guid? GetCurrentPlayerGuidFromSession(this Controller controller)
+		{
+			var playerGuidInString = controller.HttpContext.Session.GetString(SessionVariables.CurrentPlayerGuid);
+
+			return playerGuidInString == null ? null : new Guid(playerGuidInString);
+		}
+
 		public static int? GetEncodedFieldFromSession(this Controller controller)
 		{
 			return controller.HttpContext.Session.GetInt32(SessionVariables.EncodedField);

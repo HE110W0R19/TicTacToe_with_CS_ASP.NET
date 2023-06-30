@@ -1,173 +1,217 @@
 ﻿using FirstWebApp.Extentions;
 using FirstWebApp.Models;
 using FirstWebApp.ServerDatabase;
-using FirstWebApp.Session;
 using FirstWebApp.Utilities;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace FirstWebApp.Controllers
 {
-    public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+	public class HomeController : Controller
+	{
+		private readonly ILogger<HomeController> _logger;
+		public HomeController(ILogger<HomeController> logger)
+		{
+			_logger = logger;
+		}
 
-        public IActionResult Index()
-        {
-            //var TestGame = new GameInfo(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
+		[HttpGet]
+		public IActionResult Index()
+		{
+			//var TestGame = new GameInfo(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
 
-            BoardModel.restart();
-            return View("Index");
-        }
+			BoardModel.restart();
+			return View(new LoginDataModel());
+		}
 
-        [HttpPost]
-        public IActionResult GoToGame(Guid tableGuid, int field)
-        {
-            this.SetEncodedFieldFromSession(field);
-            this.SetTableGuidFromSession(tableGuid);
+		[HttpPost]
+		public IActionResult Index(LoginDataModel dataModel)
+		{
+			if (ModelState.IsValid)
+			{
 
-            return RedirectToAction("GamePage");
-        }
+				QueryBuilder query = new QueryBuilder();
+				query.Add(nameof(dataModel.playerName), dataModel.playerName ?? string.Empty);
+				
+				var currentUri = HttpContext.Request.GetEncodedUrl();
+				
+				UriBuilder uri = new UriBuilder(currentUri);
+				uri.Path = this.Url.Action(nameof(AddUser));
+				uri.Query = query.ToString();
+				
+				return Redirect(uri.Uri.ToString());
+			}
 
-        [HttpGet]
-        [Route("Home/GamePage")]
-        public IActionResult GetGamePage() 
-        {
-            var playerName = this.GetCurrentPlayerNameFromSession();
-            var field = this.GetEncodedFieldFromSession();
-            var tableGuid = this.GetTableGuidFromSession();
+			return View(dataModel);
+		}
 
-            if(playerName == null || field == null || tableGuid == null)
-            {
-                return RedirectToAction("SessionExpiration");
-            }
+		[HttpGet]
+		public IActionResult WaitingPlayerConnect()
+		{
+			return View();
+		}
 
-            BoardModel.boardInfo.boardRandom = TicTacToeUtilities.DecodeField((int)field).Cast<char>().ToArray();
-            BoardModel.boardInfo.makeMoveName = playerName;
+		[HttpPost]
+		public IActionResult GoToGame(Guid tableGuid, int field)
+		{
+			this.SetEncodedFieldFromSession(field);
+			this.SetTableGuidFromSession(tableGuid);
 
-            return View("GamePage", BoardModel.boardInfo);
-        }
+			var currentPlayerGuid = this.GetCurrentPlayerGuidFromSession();
 
-        [HttpPost]
-        public IActionResult GamePage([FromForm(Name = "index")] string index = "-1")
-        {
-            int indexInt = Convert.ToInt32(index);
+			if (currentPlayerGuid == null)
+			{
+				return RedirectToAction("SessionExpiration");
+			}
 
-            if (indexInt >= 0 && indexInt <= 8)
-            {
-                putPoint(indexInt);
-                if (isWinnerChecker(BoardModel.boardInfo.boardRandom) == true)
-                {
-                    return View("WinnerPage", BoardModel.boardInfo);
-                }
-            }
+			if (Database.Tables[tableGuid] == null)
+			{
+				var newGameGuid = Guid.NewGuid();
+				Database.Games[newGameGuid] = new GameInfo(currentPlayerGuid ?? Guid.Empty, field);
+				Database.Tables[tableGuid] = newGameGuid;
 
-            return View(BoardModel.boardInfo);
-        }
+				return RedirectToAction(nameof(WaitingPlayerConnect));
+			}
 
-        public IActionResult refreshGamePage()
-        {
-            BoardModel.restart();
-            return View("GamePage", BoardModel.boardInfo);
-        }
+			return RedirectToAction(nameof(GamePage));
+		}
 
-        public void putPoint(int index)
-        {
-            if (BoardModel.isX == true)
-            {
-                BoardModel.boardInfo.boardRandom[index] = 'X';
-                BoardModel.isX = false;
-            }
-            else
-            {
-                BoardModel.boardInfo.boardRandom[index] = 'O';
-                BoardModel.isX = true;
-            }
-        }
+		[HttpGet]
+		[Route("Home/GamePage")]
+		public IActionResult GetGamePage()
+		{
+			var playerName = this.GetCurrentPlayerNameFromSession();
+			var field = this.GetEncodedFieldFromSession();
+			var tableGuid = this.GetTableGuidFromSession();
 
-        [HttpPost]
-        public IActionResult AddUser(string playerName)
-        {
-            if (!Database.Users.ContainsValue(playerName))
-            {
-                Database.Users.Add(Guid.NewGuid(), playerName);
-            }
+			if (playerName == null || field == null || tableGuid == null)
+			{
+				return RedirectToAction("SessionExpiration");
+			}
 
-            this.SetCurrentPlayerNameFromSession(playerName);
+			BoardModel.boardInfo.boardRandom = TicTacToeUtilities.DecodeField((int)field).Cast<char>().ToArray();
+			BoardModel.boardInfo.makeMoveName = playerName;
 
-            return RedirectToAction("Lobby");
-        }
+			return View(nameof(GamePage), BoardModel.boardInfo);
+		}
 
-        [HttpGet]
-        public IActionResult SessionExpiration()
-        {
-            return View();
-        }
+		[HttpPost]
+		public IActionResult GamePage([FromForm(Name = "index")] string index = "-1")
+		{
+			int indexInt = Convert.ToInt32(index);
 
-        [HttpGet]
-        public IActionResult Lobby()
-        {
-            var playerName = this.GetCurrentPlayerNameFromSession();
+			if (indexInt >= 0 && indexInt <= 8)
+			{
+				putPoint(indexInt);
+				if (isWinnerChecker(BoardModel.boardInfo.boardRandom) == true)
+				{
+					return View("WinnerPage", BoardModel.boardInfo);
+				}
+			}
 
-            if (playerName == null)
-            {
-                return RedirectToAction("SessionExpiration");
-            }
+			return View(BoardModel.boardInfo);
+		}
 
-            var lobbyModel = new LobbyPageModel(playerName);
+		public IActionResult refreshGamePage()
+		{
+			BoardModel.restart();
+			return View("GamePage", BoardModel.boardInfo);
+		}
 
-            return View(lobbyModel);
-        }
+		public void putPoint(int index)
+		{
+			if (BoardModel.isX == true)
+			{
+				BoardModel.boardInfo.boardRandom[index] = 'X';
+				BoardModel.isX = false;
+			}
+			else
+			{
+				BoardModel.boardInfo.boardRandom[index] = 'O';
+				BoardModel.isX = true;
+			}
+		}
 
-        public bool isWinnerChecker(char[] ticTactToeBoardModel)
-        {
-            if (
-                ((ticTactToeBoardModel[0] == ticTactToeBoardModel[4]) & (ticTactToeBoardModel[4] == ticTactToeBoardModel[8]) &
-                (ticTactToeBoardModel[0] != ' ' & ticTactToeBoardModel[4] != ' ' & ticTactToeBoardModel[8] != ' ')) ||
+		[HttpGet]
+		public IActionResult AddUser(string playerName)
+		{
+			if (!Database.Users.ContainsValue(playerName))
+			{
+				Database.Users.Add(Guid.NewGuid(), playerName);
+			}
 
-                ((ticTactToeBoardModel[2] == ticTactToeBoardModel[4]) & (ticTactToeBoardModel[4] == ticTactToeBoardModel[6]) &
-                (ticTactToeBoardModel[2] != ' ' & ticTactToeBoardModel[4] != ' ' & ticTactToeBoardModel[6] != ' ')) ||
+			this.SetCurrentPlayerNameFromSession(playerName);
 
-                ((ticTactToeBoardModel[2] == ticTactToeBoardModel[5]) & (ticTactToeBoardModel[5] == ticTactToeBoardModel[8]) &
-                (ticTactToeBoardModel[2] != ' ' & ticTactToeBoardModel[5] != ' ' & ticTactToeBoardModel[8] != ' ')) ||
+			return RedirectToAction("Lobby");
+		}
 
-                ((ticTactToeBoardModel[1] == ticTactToeBoardModel[4]) & (ticTactToeBoardModel[4] == ticTactToeBoardModel[7]) &
-                (ticTactToeBoardModel[1] != ' ' & ticTactToeBoardModel[4] != ' ' & ticTactToeBoardModel[7] != ' ')) ||
+		[HttpGet]
+		public IActionResult SessionExpiration()
+		{
+			return View();
+		}
 
-                ((ticTactToeBoardModel[0] == ticTactToeBoardModel[3]) & (ticTactToeBoardModel[3] == ticTactToeBoardModel[6]) &
-                (ticTactToeBoardModel[0] != ' ' & ticTactToeBoardModel[3] != ' ' & ticTactToeBoardModel[6] != ' ')) ||
+		[HttpGet]
+		public IActionResult Lobby()
+		{
+			var playerName = this.GetCurrentPlayerNameFromSession();
 
-                ((ticTactToeBoardModel[6] == ticTactToeBoardModel[7]) & (ticTactToeBoardModel[7] == ticTactToeBoardModel[8]) &
-                (ticTactToeBoardModel[6] != ' ' & ticTactToeBoardModel[7] != ' ' & ticTactToeBoardModel[8] != ' ')) ||
+			if (playerName == null)
+			{
+				return RedirectToAction("SessionExpiration");
+			}
 
-                ((ticTactToeBoardModel[3] == ticTactToeBoardModel[4]) & (ticTactToeBoardModel[4] == ticTactToeBoardModel[5]) &
-                (ticTactToeBoardModel[3] != ' ' & ticTactToeBoardModel[4] != ' ' & ticTactToeBoardModel[5] != ' ')) ||
+			var lobbyModel = new LobbyPageModel(playerName);
 
-                ((ticTactToeBoardModel[0] == ticTactToeBoardModel[1]) & (ticTactToeBoardModel[1] == ticTactToeBoardModel[2]) &
-                (ticTactToeBoardModel[0] != ' ' & ticTactToeBoardModel[1] != ' ' & ticTactToeBoardModel[2] != ' '))
-                )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+			return View(lobbyModel);
+		}
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+		public bool isWinnerChecker(char[] ticTactToeBoardModel)
+		{
+			if (
+				((ticTactToeBoardModel[0] == ticTactToeBoardModel[4]) & (ticTactToeBoardModel[4] == ticTactToeBoardModel[8]) &
+				(ticTactToeBoardModel[0] != ' ' & ticTactToeBoardModel[4] != ' ' & ticTactToeBoardModel[8] != ' ')) ||
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-    }
+				((ticTactToeBoardModel[2] == ticTactToeBoardModel[4]) & (ticTactToeBoardModel[4] == ticTactToeBoardModel[6]) &
+				(ticTactToeBoardModel[2] != ' ' & ticTactToeBoardModel[4] != ' ' & ticTactToeBoardModel[6] != ' ')) ||
+
+				((ticTactToeBoardModel[2] == ticTactToeBoardModel[5]) & (ticTactToeBoardModel[5] == ticTactToeBoardModel[8]) &
+				(ticTactToeBoardModel[2] != ' ' & ticTactToeBoardModel[5] != ' ' & ticTactToeBoardModel[8] != ' ')) ||
+
+				((ticTactToeBoardModel[1] == ticTactToeBoardModel[4]) & (ticTactToeBoardModel[4] == ticTactToeBoardModel[7]) &
+				(ticTactToeBoardModel[1] != ' ' & ticTactToeBoardModel[4] != ' ' & ticTactToeBoardModel[7] != ' ')) ||
+
+				((ticTactToeBoardModel[0] == ticTactToeBoardModel[3]) & (ticTactToeBoardModel[3] == ticTactToeBoardModel[6]) &
+				(ticTactToeBoardModel[0] != ' ' & ticTactToeBoardModel[3] != ' ' & ticTactToeBoardModel[6] != ' ')) ||
+
+				((ticTactToeBoardModel[6] == ticTactToeBoardModel[7]) & (ticTactToeBoardModel[7] == ticTactToeBoardModel[8]) &
+				(ticTactToeBoardModel[6] != ' ' & ticTactToeBoardModel[7] != ' ' & ticTactToeBoardModel[8] != ' ')) ||
+
+				((ticTactToeBoardModel[3] == ticTactToeBoardModel[4]) & (ticTactToeBoardModel[4] == ticTactToeBoardModel[5]) &
+				(ticTactToeBoardModel[3] != ' ' & ticTactToeBoardModel[4] != ' ' & ticTactToeBoardModel[5] != ' ')) ||
+
+				((ticTactToeBoardModel[0] == ticTactToeBoardModel[1]) & (ticTactToeBoardModel[1] == ticTactToeBoardModel[2]) &
+				(ticTactToeBoardModel[0] != ' ' & ticTactToeBoardModel[1] != ' ' & ticTactToeBoardModel[2] != ' '))
+				)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public IActionResult Privacy()
+		{
+			return View();
+		}
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		public IActionResult Error()
+		{
+			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+	}
 }

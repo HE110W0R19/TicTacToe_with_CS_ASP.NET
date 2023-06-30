@@ -52,7 +52,13 @@ namespace FirstWebApp.Models
 			PlayerXGuid = Guid.Empty;
 			PlayerOGuid = Guid.Empty;
 			PlayerTurnGuid = Guid.Empty;
-			CreateRandomBoard();
+		}
+
+		public GameInfo(Guid playerXGuid, int encodedField)
+		{
+			PlayerXGuid = playerXGuid;
+			PlayerOGuid = Guid.Empty;
+			PlayerTurnGuid = playerXGuid;
 		}
 
 		private void CreateRandomBoard()

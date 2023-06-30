@@ -1,16 +1,23 @@
-﻿@{
+﻿@model LoginDataModel
+@{
     ViewData["Title"] = "Registry Page";
 }
 
 <h2>Здарова!</h2>
 
-<form method="post" asp-area="" asp-controller="Home" asp-action="AddUser">
-    <div class="Name-input-form">
+
+
+<form method="post" asp-area="" asp-controller="Home" asp-action="Index">
+	<div class="Name-input-form">
+		<div class="Validation-Exception-output">
+			<div asp-validation-summary="All">
+			</div>
+		</div>
 			<div align="center">
 				Введи свой позывной, фраер:
 			</div>
 			<div align="center">
-				<input class="name-input" type="text" value="" id="playerName" name="playerName">
+				<input class="name-input" type="text" asp-for="playerName">
 				<button type="submit">Start</button>
 			</div>
     </div>
