@@ -14,7 +14,11 @@ namespace FirstWebApp.Models
 		public char CurrentTurnSimbol => PlayerTurnGuid == PlayerXGuid ? 'X' : 'O';
 		public int turnCounter => DecodedField.Count(x => x != ' ');
 
-		public string PlayerOName => Database.Users[PlayerOGuid];
+		public bool isSecondPlayerInGame => PlayerOGuid != Guid.Empty;
+
+        public bool isPlayerXTurn => PlayerXGuid == PlayerTurnGuid;
+
+        public string PlayerOName => Database.Users[PlayerOGuid];
 		public string PlayerXName => Database.Users[PlayerXGuid];
 
 		public void SetField(int encodedValue)
@@ -44,7 +48,7 @@ namespace FirstWebApp.Models
 			PlayerXGuid = playerXGuid;
 			PlayerOGuid = playerOGuid;
 			PlayerTurnGuid = playerTurnGuid;
-
+			CreateRandomBoard();
 		}
 
 		public GameInfo()
@@ -52,6 +56,7 @@ namespace FirstWebApp.Models
 			PlayerXGuid = Guid.Empty;
 			PlayerOGuid = Guid.Empty;
 			PlayerTurnGuid = Guid.Empty;
+			CreateRandomBoard();
 		}
 
 		public GameInfo(Guid playerXGuid, int encodedField)
@@ -59,9 +64,18 @@ namespace FirstWebApp.Models
 			PlayerXGuid = playerXGuid;
 			PlayerOGuid = Guid.Empty;
 			PlayerTurnGuid = playerXGuid;
+			CreateRandomBoard();
 		}
 
-		private void CreateRandomBoard()
+        public GameInfo(GameInfo gameInfo)
+        {
+            PlayerXGuid = gameInfo.PlayerXGuid;
+            PlayerOGuid = gameInfo.PlayerOGuid;
+            PlayerTurnGuid = gameInfo.PlayerTurnGuid;
+			SetField(gameInfo.EncodedField);
+		}
+
+        private void CreateRandomBoard()
 		{
 			var random = new Random();
 			var board = new char[9] {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
@@ -80,7 +94,17 @@ namespace FirstWebApp.Models
 
 			SetField(board);
 		}
-	}
+
+		internal void SetSecodPlayer(Guid playerGuid)
+		{
+			PlayerOGuid = playerGuid;
+		}
+
+        public void SetNextPlayerTurn()
+        {
+            PlayerTurnGuid = PlayerTurnGuid == PlayerXGuid ? PlayerOGuid : PlayerXGuid;
+        }
+    }
 }
 
 /*

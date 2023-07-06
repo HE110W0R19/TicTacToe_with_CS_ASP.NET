@@ -1,0 +1,55 @@
+﻿@model FieldViewDataModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    .TicTacToe-LobbyBoard {
+        display: inline;
+    }
+
+	.turnForm {
+		height: 100%;
+       
+    }
+
+    .turnForm button{
+    height: 100%;
+        width: 100%;
+            border: 0;
+			padding: 0;
+			background: inherit;
+    }
+
+</style>
+
+<table class="TicTacToe-LobbyBoard">
+    @for (int row = 0; row < 3; ++row)
+    {
+        <tr>
+            @for (int col = 0; col < 3; ++col)
+            {
+                <td>
+                    @{
+                        var index = row * 3 + col;
+                    }
+                    @if (Model.IsReadOnlyView || Model.DecodedField[index] != ' ')
+                    {
+                        <span>
+                        @Model.DecodedField[index]
+                        </span>
+                    }
+                    else
+                    {
+                        <form class="turnForm" asp-controller="Games" asp-action="Turn">
+                            @Html.Hidden("fieldIndex", index)
+                            <button type="submit"> </button>
+                        </form>
+                    }
+                </td>
+            }
+        </tr>
+    }
+</table>

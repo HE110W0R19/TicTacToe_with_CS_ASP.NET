@@ -1,5 +1,6 @@
 ﻿namespace FirstWebApp.Models
 {
+    [Obsolete]
     public class User
     {
         public string Name { get; set; }

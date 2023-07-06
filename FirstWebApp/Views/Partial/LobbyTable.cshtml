@@ -33,22 +33,7 @@
     </tr>
     <tr>
         <td>
-            <table class ="TicTacToe-LobbyBoard">
-            @for(int row = 0; row < 3; ++row)
-            {
-                <tr>
-                    @for(int col = 0; col < 3; ++col)
-                    {
-                        <td>
-                            @{var index = row * 3 + col;}
-                            <span>
-                                @Model.Game.DecodedField[index]
-                            </span>
-                        </td>
-                    }
-                </tr>
-            }
-            </table>
+            @await Html.PartialAsync("../Partial/FieldView", new FieldViewDataModel(Model.Game, true))
         </td>
     </tr>
     <tr>

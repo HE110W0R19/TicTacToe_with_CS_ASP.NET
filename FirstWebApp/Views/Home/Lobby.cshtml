@@ -30,7 +30,7 @@
 		@for (int iter = 0; iter < Model.Tables.Length; ++iter)
 		{
 			<td>
-				@await Html.PartialAsync("LobbyTable", Model.Tables[iter])
+				@await Html.PartialAsync("../Partial/LobbyTable", Model.Tables[iter])
 			</td>
 		}
 	</tr>

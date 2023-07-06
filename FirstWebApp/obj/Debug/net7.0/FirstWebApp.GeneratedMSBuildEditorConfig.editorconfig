@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/TuF/Documents/GitHub/TicTacToe_with_CS_ASP.NET/FirstWebApp/Views/Games/TicTacToe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FtZXNcVGljVGFjVG9lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/TuF/Documents/GitHub/TicTacToe_with_CS_ASP.NET/FirstWebApp/Views/Home/GamePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHYW1lUGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -26,10 +30,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/TuF/Documents/GitHub/TicTacToe_with_CS_ASP.NET/FirstWebApp/Views/Home/Lobby.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2JieS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/TuF/Documents/GitHub/TicTacToe_with_CS_ASP.NET/FirstWebApp/Views/Home/LobbyTable.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2JieVRhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/TuF/Documents/GitHub/TicTacToe_with_CS_ASP.NET/FirstWebApp/Views/Home/Privacy.cshtml]
@@ -46,6 +46,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/TuF/Documents/GitHub/TicTacToe_with_CS_ASP.NET/FirstWebApp/Views/Home/WinnerPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxXaW5uZXJQYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Documents/GitHub/TicTacToe_with_CS_ASP.NET/FirstWebApp/Views/Partial/FieldView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGlhbFxGaWVsZFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TuF/Documents/GitHub/TicTacToe_with_CS_ASP.NET/FirstWebApp/Views/Partial/LobbyTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGlhbFxMb2JieVRhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/TuF/Documents/GitHub/TicTacToe_with_CS_ASP.NET/FirstWebApp/Views/Shared/Error.cshtml]

@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using FirstWebApp.ServerDatabase;
 
 namespace FirstWebApp.Models
 {
-    public class TicTacToeModel
+    public class TicTacToeModel : GameInfo
     {
-        public string makeMoveName { get; set; }
-        public string winnerName { get; set; }
-        public char[] boardRandom;
-        public TicTacToeModel()
+        public Guid CurrentPlayerGuid { get; private set; }
+        public string CurrentPlayerName => Database.Users[CurrentPlayerGuid];
+
+        public bool IsCurrentPlayerX => CurrentPlayerGuid == PlayerXGuid;
+        public bool IsCurrentPlayerO => CurrentPlayerGuid == PlayerOGuid;
+        public bool IsCurrentPlayerTurn => CurrentPlayerGuid == PlayerTurnGuid;
+
+        public TicTacToeModel(GameInfo gameInfo, Guid currentPlayerGuid) : base(gameInfo)
         {
-            makeMoveName = string.Empty;
-            winnerName = string.Empty;
-            boardRandom = new char[9] { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+            CurrentPlayerGuid = currentPlayerGuid;
         }
     }
 }
