@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "xfxkycA60/6OIeFJ4kh8/yH2xGrEmP7mBRk1FqQp2xeuxTE0YF/aCqhS7i491krG/E8Tt1zq2YiEcz6CXCyn0g==",
+  "dgSpecHash": "/S0fdVVx7mM6pX6hUa66HKkrYH97IuvAINclYz7jpXT+scDOZfie7jRA2PJgN84z9653YlCbR59qZUt4e87EIA==",
   "success": true,
   "projectFilePath": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\FirstWebApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\TuF\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\7.0.8\\microsoft.aspnetcore.jsonpatch.7.0.8.nupkg.sha512",
+    "C:\\Users\\TuF\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\7.0.8\\microsoft.aspnetcore.mvc.newtonsoftjson.7.0.8.nupkg.sha512",
+    "C:\\Users\\TuF\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\TuF\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\TuF\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -50,12 +50,19 @@ namespace FirstWebApp.Controllers
 
             field[fieldIndex] = model.isPlayerXTurn ? 'X' : 'O';
             model.SetField(field);
-            model.SetNextPlayerTurn();
 
             var gameGuid = Database.Tables[tableGuid] ?? Guid.Empty;
             Database.Games[gameGuid] = (GameInfo)model;
 
-            return RedirectToAction(nameof(TicTacToe));
+            if (model.isVictory || model.isDraw)
+            {
+                return RedirectToAction("EndGame", "Home");
+            }
+            else
+            {
+                model.SetNextPlayerTurn();
+                return RedirectToAction(nameof(TicTacToe));
+            }
         }
     }
 }

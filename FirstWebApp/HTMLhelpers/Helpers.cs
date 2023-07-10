@@ -1,5 +1,4 @@
-﻿using FirstWebApp.Models;
-using Microsoft.AspNetCore.Html;
+﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FirstWebApp.HTMLhelpers

@@ -113,6 +113,7 @@ namespace FirstWebApp.Controllers
 			return View(nameof(GamePage), BoardModel.boardInfo);
 		}
 
+		[Obsolete]
 		[HttpPost]
 		public IActionResult GamePage([FromForm(Name = "index")] string index = "-1")
 		{
@@ -163,7 +164,28 @@ namespace FirstWebApp.Controllers
 			return RedirectToAction(nameof(Lobby));
 		}
 
-		[HttpGet]
+		public IActionResult EndGame()
+		{
+            if(!this.CheckSessionExist(
+            Session.SessionVariablesName.CurrentPlayerGuid |
+            Session.SessionVariablesName.EncodedField |
+            Session.SessionVariablesName.TableGuid)
+			)
+			{
+                return RedirectToAction(nameof(SessionExpiration));
+            }
+
+            var playerGuid = this.GetCurrentPlayerGuidFromSession() ?? Guid.Empty;
+            var field = this.GetEncodedFieldFromSession();
+            var tableGuid = this.GetTableGuidFromSession() ?? Guid.Empty;
+			var gameTableInfo = Database.Tables[tableGuid] ?? Guid.Empty;
+			var gameInfo = Database.Games[gameTableInfo] ?? new GameInfo();
+
+
+			return View(new TicTacToeModel(gameInfo, playerGuid));
+        }
+
+        [HttpGet]
 		public IActionResult SessionExpiration()
 		{
 			return View();

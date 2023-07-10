@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 builder.Services.AddSession((config) =>
 {
     config.IdleTimeout = TimeSpan.FromMinutes(2.0);

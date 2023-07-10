@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace FirstWebApp.Models
+﻿namespace FirstWebApp.Models
 {
     [Obsolete]
     public class TicTacToeModelObsolete

@@ -5,8 +5,8 @@
       "PackagePath": "staticwebassets\\FirstWebApp.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\backgrounds\\TicTacToeBackground.jpg",
-      "PackagePath": "staticwebassets\\backgrounds\\TicTacToeBackground.jpg"
+      "Id": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\backgrounds\\TicTacToeBackgroundImage.jpg",
+      "PackagePath": "staticwebassets\\backgrounds\\TicTacToeBackgroundImage.jpg"
     },
     {
       "Id": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\css\\site.css",

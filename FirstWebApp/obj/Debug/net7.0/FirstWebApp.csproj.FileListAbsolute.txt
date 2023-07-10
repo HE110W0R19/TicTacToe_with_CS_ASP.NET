@@ -246,3 +246,8 @@ C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\ne
 C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.pdb
 C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.genruntimeconfig.cache
 C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\ref\FirstWebApp.dll
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\TuF\Documents\GitHub\TicTacToe_with_CS_ASP.NET\FirstWebApp\obj\Debug\net7.0\FirstWebApp.csproj.CopyComplete

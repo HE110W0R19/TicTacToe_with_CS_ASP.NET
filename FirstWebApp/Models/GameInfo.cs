@@ -18,10 +18,71 @@ namespace FirstWebApp.Models
 
         public bool isPlayerXTurn => PlayerXGuid == PlayerTurnGuid;
 
+		public bool isVictory => IsWinnerLeftDiagonal || IsWinnerRightDiagonal || IsWinnerRow || IsWinnerCol;
+
+		public bool isDraw => DecodedField.Any(x => x != ' ');
+
         public string PlayerOName => Database.Users[PlayerOGuid];
 		public string PlayerXName => Database.Users[PlayerXGuid];
 
-		public void SetField(int encodedValue)
+		public bool IsWinnerLeftDiagonal {
+			get
+			{
+				int field = EncodedField;
+				if (!isPlayerXTurn)
+				{
+					field = TicTacToeUtilities.SetEncodedFieldCellOAsX(field);
+				}
+				return (field & 0b_01_00_00_00_01_00_00_00_01) == 0b_01_00_00_00_01_00_00_00_01;
+			}
+		}
+
+        public bool IsWinnerRightDiagonal
+        {
+            get
+            {
+                int field = EncodedField;
+                if (!isPlayerXTurn)
+                {
+                    field = TicTacToeUtilities.SetEncodedFieldCellOAsX(field);
+                }
+                return (field & 0b_00_00_01_00_01_00_01_00_00) == 0b_00_00_01_00_01_00_01_00_00;
+            }
+        }
+
+        public bool IsWinnerRow
+        {
+            get
+            {
+                int field = EncodedField;
+                if (!isPlayerXTurn)
+                {
+                    field = TicTacToeUtilities.SetEncodedFieldCellOAsX(field);
+                }
+
+                return (field & 0b_01_00_00_00_01_00_00_00_01) == 0b_01_00_00_00_01_00_00_00_01 ||
+                    (field >> 6 & 0b_01_00_00_00_01_00_00_00_01) == 0b_01_00_00_00_01_00_00_00_01 ||
+                    (field >> 12 & 0b_01_00_00_00_01_00_00_00_01) == 0b_01_00_00_00_01_00_00_00_01;
+            }
+        }
+
+        public bool IsWinnerCol
+        {
+            get
+            {
+                int field = EncodedField;
+                if (!isPlayerXTurn)
+                {
+                    field = TicTacToeUtilities.SetEncodedFieldCellOAsX(field);
+                }
+
+                return (field & 0b_01_00_00_01_00_00_01_00_00) == 0b_01_00_00_01_00_00_01_00_00 ||
+                    (field >> 2 & 0b_01_00_00_01_00_00_01_00_00) == 0b_01_00_00_01_00_00_01_00_00 ||
+                    (field >> 4 & 0b_01_00_00_01_00_00_01_00_00) == 0b_01_00_00_01_00_00_01_00_00;
+            }
+        }
+
+        public void SetField(int encodedValue)
 		{
 			if (encodedValue == EncodedField)
 			{

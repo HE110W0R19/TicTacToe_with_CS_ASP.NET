@@ -11,6 +11,11 @@
 
 		private static Dictionary<char, int> _EncodedValue = _ValueIndex.ToDictionary(x => x.Value, x => x.Key);
 
+		public static int SetEncodedFieldCellOAsX(int field)
+		{
+			return field >> 1;
+		}
+
 		public static char[] DecodeField(int encodedField)
 		{
 			var result = new char[9];
