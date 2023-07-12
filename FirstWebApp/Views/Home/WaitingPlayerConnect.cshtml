@@ -3,7 +3,7 @@
 *@
 @{
 	ViewData["IsJqueryEnabled"] = true;
-	ViewData["Title"] = "Wait for player";
+	ViewData["Title"] = "Ждуняшка ^_^";
 }
 <div style="background-color: lightgray;">
 	<h1>
@@ -15,23 +15,4 @@
 	</h2>
 </div>
 
-<script>
-var timeReload = 1;//время в сек
-var timenow=0;
-
-    function Recheck()
-    {
-		console.log("Checked!");
-		$.ajax(
-			{
-				type:'POST',
-				url: '../Api/GetUsers',
-				success: function (result){
-					console.log('Data received: ');
-					console.log(result);
-				}
-			}
-		)
-    }
-	var t = setInterval("Recheck()", 1000);
-</script>
+<script src="~/js/Ajax_SecondPlayer.js"></script>

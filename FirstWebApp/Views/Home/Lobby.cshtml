@@ -18,6 +18,19 @@
 	}
 </style>
 
+<script src="~/js/Ajax_LobbyTableUpdater.js"></script>
+	
+@{
+	string CreateTableId(int index) => $"Table_{index}";
+}
+
+@for(int i=0;i<Model.Tables.Length; ++i)
+{
+	<script>
+		SetUpdater("@Model.Tables[i].TabelGuid", "#@CreateTableId(i)")
+	</script>			
+}
+
 <div class="lobby-form">
 <div align="center">
     <h3>
@@ -29,7 +42,7 @@
 	<tr>
 		@for (int iter = 0; iter < Model.Tables.Length; ++iter)
 		{
-			<td>
+			<td id=@CreateTableId(iter)>
 				@await Html.PartialAsync("../Partial/LobbyTable", Model.Tables[iter])
 			</td>
 		}

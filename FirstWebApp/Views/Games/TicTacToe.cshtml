@@ -10,6 +10,11 @@
 	}
 </style>
 
+@if (!Model.IsCurrentPlayerTurn)
+{
+    <script src="~/js/Ajax_CurrentPlayerTurn.js"></script>
+}
+
 <table class="GameLobbyTable">
     <tr>
         <td>

@@ -206,6 +206,7 @@ namespace FirstWebApp.Controllers
 			return View(lobbyModel);
 		}
 
+		[Obsolete]
 		public bool isWinnerChecker(char[] ticTactToeBoardModel)
 		{
 			if (

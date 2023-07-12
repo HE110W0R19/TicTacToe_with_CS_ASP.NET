@@ -17,6 +17,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\js\\Ajax_LobbyTableUpdater.js",
+      "PackagePath": "staticwebassets\\js\\Ajax_LobbyTableUpdater.js"
+    },
+    {
+      "Id": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\js\\Ajax_SecondPlayer.js",
+      "PackagePath": "staticwebassets\\js\\Ajax_SecondPlayer.js"
+    },
+    {
       "Id": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

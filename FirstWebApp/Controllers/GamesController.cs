@@ -60,7 +60,7 @@ namespace FirstWebApp.Controllers
             }
             else
             {
-                model.SetNextPlayerTurn();
+                Database.Games[gameGuid].SetNextPlayerTurn();
                 return RedirectToAction(nameof(TicTacToe));
             }
         }
