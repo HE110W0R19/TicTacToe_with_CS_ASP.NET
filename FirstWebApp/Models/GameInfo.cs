@@ -9,6 +9,8 @@ namespace FirstWebApp.Models
 		public Guid PlayerOGuid { get; private set; }
 		public Guid PlayerTurnGuid { get; private set; }
 
+		public readonly Database database;
+
 		public int EncodedField { get; private set; }
 		public char[] DecodedField = new char[9];
 		public char CurrentTurnSimbol => PlayerTurnGuid == PlayerXGuid ? 'X' : 'O';
@@ -22,8 +24,8 @@ namespace FirstWebApp.Models
 
 		public bool isDraw => DecodedField.Any(x => x != ' ');
 
-        public string PlayerOName => Database.Users[PlayerOGuid];
-		public string PlayerXName => Database.Users[PlayerXGuid];
+		public string PlayerOName => database.Users[PlayerOGuid];
+		public string PlayerXName => database.Users[PlayerXGuid];
 
 		public bool IsWinnerLeftDiagonal {
 			get
@@ -104,8 +106,9 @@ namespace FirstWebApp.Models
 			DecodedField = decodedValue;
 		}
 
-		public GameInfo(Guid playerXGuid, Guid playerOGuid, Guid playerTurnGuid)
+		public GameInfo(Guid playerXGuid, Guid playerOGuid, Guid playerTurnGuid, Database dataBase)
 		{
+			database = dataBase;
 			PlayerXGuid = playerXGuid;
 			PlayerOGuid = playerOGuid;
 			PlayerTurnGuid = playerTurnGuid;
@@ -114,14 +117,16 @@ namespace FirstWebApp.Models
 
 		public GameInfo()
 		{
+			database = new Database();
 			PlayerXGuid = Guid.Empty;
 			PlayerOGuid = Guid.Empty;
 			PlayerTurnGuid = Guid.Empty;
 			CreateRandomBoard();
 		}
 
-		public GameInfo(Guid playerXGuid, int encodedField)
+		public GameInfo(Guid playerXGuid, int encodedField, Database dataBase)
 		{
+			database = dataBase;
 			PlayerXGuid = playerXGuid;
 			PlayerOGuid = Guid.Empty;
 			PlayerTurnGuid = playerXGuid;
@@ -133,6 +138,7 @@ namespace FirstWebApp.Models
             PlayerXGuid = gameInfo.PlayerXGuid;
             PlayerOGuid = gameInfo.PlayerOGuid;
             PlayerTurnGuid = gameInfo.PlayerTurnGuid;
+			database = gameInfo.database;
 			SetField(gameInfo.EncodedField);
 		}
 

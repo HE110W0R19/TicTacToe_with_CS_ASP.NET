@@ -7,13 +7,13 @@ namespace FirstWebApp.Extentions
 {
     public static class Extention
     {
-        public static GameInfo GetCurrentGameInfo(this Controller _, Guid tableGuid)
+        public static GameInfo GetCurrentGameInfo(this Controller _, Guid tableGuid, Database dataBase)
         {
-            var gameGuid = Database.Tables[tableGuid];
+            var gameGuid = dataBase.Tables[tableGuid];
 
             if (gameGuid.HasValue)
             {
-                return Database.Games[gameGuid.Value];
+                return dataBase.Games[gameGuid.Value];
             }
             else
             {

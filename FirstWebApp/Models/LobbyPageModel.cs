@@ -7,15 +7,15 @@ namespace FirstWebApp.Models
 		public string CurrentPlayerName { get; private set; }
 		public LobbyTableModel[] Tables { get; private set; }
 
-		public LobbyPageModel(string currentPlayerName) 
+		public LobbyPageModel(string currentPlayerName, Database dataBase) 
 		{
 			CurrentPlayerName = currentPlayerName;
 			Tables = new LobbyTableModel[3];
 
 			for(int i = 0; i < Tables.Length; ++i)
 			{
-				var lobbyTabelGuid = Database.Tables.ElementAt(i).Key;
-				Tables[i] = new LobbyTableModel(lobbyTabelGuid);
+				var lobbyTabelGuid = dataBase.Tables.ElementAt(i).Key;
+				Tables[i] = new LobbyTableModel(lobbyTabelGuid, dataBase);
 			}
 		}
 	}
@@ -26,12 +26,12 @@ namespace FirstWebApp.Models
 		public Guid GameGuid { get; private set; }
 
 		public GameInfo Game;
-		public LobbyTableModel(Guid tabelGuid) 
+		public LobbyTableModel(Guid tabelGuid, Database dataBase) 
 		{
 			TabelGuid = tabelGuid;
-			GameGuid = Database.Tables[TabelGuid] ?? Guid.Empty;
+			GameGuid = dataBase.Tables[TabelGuid] ?? Guid.Empty;
 		
-			Game = GameGuid == Guid.Empty ? new GameInfo() : Database.Games[GameGuid];
+			Game = GameGuid == Guid.Empty ? new GameInfo() : dataBase.Games[GameGuid];
 		}
 	}
 }

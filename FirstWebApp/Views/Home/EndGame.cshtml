@@ -4,15 +4,8 @@
 }
 
 <div class="text-center">
-    @if (Model.isDraw)
-    {
-        <h3>Победил - @Model.CurrentPlayerName, он/она же @Model.CurrentTurnSimbol</h3>     
-    }
-    else
-    {
-        <h3>Победил - @Model.CurrentPlayerName, он/она же @Model.CurrentTurnSimbol</h3>
-    }
-    
+
+    <h3>Победил - @Model.CurrentPlayerName, он/она же @Model.CurrentTurnSimbol</h3>     
     @await Html.PartialAsync("../Partial/FieldView", new FieldViewDataModel(Model, true))
     <form method="post" asp-area="" asp-controller="Home" asp-action="Index">
         <input type="submit" value="Restart">

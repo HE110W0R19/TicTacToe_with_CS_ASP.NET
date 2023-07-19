@@ -7,6 +7,11 @@ namespace FirstWebApp.Controllers
 {
     public class GamesController : Controller
     {
+        Database dataBase;
+        public GamesController(Database dataBase) 
+        {
+            this.dataBase = dataBase;
+        }
         public IActionResult TicTacToe()
         {
             if (
@@ -21,8 +26,8 @@ namespace FirstWebApp.Controllers
 
             var currentPlayerGuid = this.GetCurrentPlayerGuidFromSession() ?? Guid.Empty;
             var tableGuid = this.GetTableGuidFromSession() ?? Guid.Empty;
-            var gameInfo = this.GetCurrentGameInfo(tableGuid);
-            var model = new TicTacToeModel(gameInfo, currentPlayerGuid);
+            var gameInfo = this.GetCurrentGameInfo(tableGuid, dataBase);
+            var model = new TicTacToeModel(gameInfo, currentPlayerGuid, dataBase);
 
             return View(model);
         }
@@ -42,8 +47,8 @@ namespace FirstWebApp.Controllers
 
             var currentPlayerGuid = this.GetCurrentPlayerGuidFromSession() ?? Guid.Empty;
             var tableGuid = this.GetTableGuidFromSession() ?? Guid.Empty;
-            var gameInfo = this.GetCurrentGameInfo(tableGuid);
-            var model = new TicTacToeModel(gameInfo, currentPlayerGuid);
+            var gameInfo = this.GetCurrentGameInfo(tableGuid, dataBase);
+            var model = new TicTacToeModel(gameInfo, currentPlayerGuid, dataBase);
 
             var encodedField = model.EncodedField;
             var field = Utilities.TicTacToeUtilities.DecodeField(encodedField);
@@ -51,16 +56,16 @@ namespace FirstWebApp.Controllers
             field[fieldIndex] = model.isPlayerXTurn ? 'X' : 'O';
             model.SetField(field);
 
-            var gameGuid = Database.Tables[tableGuid] ?? Guid.Empty;
-            Database.Games[gameGuid] = (GameInfo)model;
+            var gameGuid = dataBase.Tables[tableGuid] ?? Guid.Empty;
+            dataBase.Games[gameGuid] = (GameInfo)model;
 
-            if (model.isVictory || model.isDraw)
+            if (model.isVictory)
             {
                 return RedirectToAction("EndGame", "Home");
             }
             else
             {
-                Database.Games[gameGuid].SetNextPlayerTurn();
+                dataBase.Games[gameGuid].SetNextPlayerTurn();
                 return RedirectToAction(nameof(TicTacToe));
             }
         }

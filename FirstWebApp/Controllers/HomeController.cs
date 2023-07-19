@@ -9,10 +9,13 @@ namespace FirstWebApp.Controllers
 {
 	public class HomeController : Controller
 	{
+		Database dataBase;
+
 		private readonly ILogger<HomeController> _logger;
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, Database dataBase)
 		{
 			_logger = logger;
+			this.dataBase = dataBase;
 		}
 
 		[HttpGet]
@@ -45,7 +48,7 @@ namespace FirstWebApp.Controllers
 
 			var currentPlayerGuid = this.GetCurrentPlayerGuidFromSession() ?? Guid.Empty;
 			var tableGuid = this.GetTableGuidFromSession() ?? Guid.Empty;
-			var gameInfo = this.GetCurrentGameInfo(tableGuid);
+			var gameInfo = this.GetCurrentGameInfo(tableGuid, dataBase);
 
 			if (gameInfo.isSecondPlayerInGame)
 			{
@@ -68,11 +71,11 @@ namespace FirstWebApp.Controllers
 			}
 
 			var currentPlayerGuid = this.GetCurrentPlayerGuidFromSession() ?? Guid.Empty;
-			var gameGuid = Database.Tables[tableGuid];
+			var gameGuid = dataBase.Tables[tableGuid];
 
 			if (gameGuid.HasValue)
 			{
-				var gameInfo = Database.Games[gameGuid.Value];
+				var gameInfo = dataBase.Games[gameGuid.Value];
 
 				if (gameInfo.isSecondPlayerInGame)
 				{
@@ -85,7 +88,7 @@ namespace FirstWebApp.Controllers
 			}
 			else
 			{
-				return this.EnroleFirstPlayer(currentPlayerGuid, tableGuid, field);
+				return this.EnroleFirstPlayer(currentPlayerGuid, tableGuid, field, dataBase);
 			}
 		}
 
@@ -103,7 +106,7 @@ namespace FirstWebApp.Controllers
 				return RedirectToAction(nameof(SessionExpiration));
 			}
 
-			var playerName = this.GetCurrentPlayerNameFromSession();
+			var playerName = this.GetCurrentPlayerNameFromSession(dataBase);
 			var field = this.GetEncodedFieldFromSession();
 			//var tableGuid = this.GetTableGuidFromSession();
 
@@ -154,38 +157,38 @@ namespace FirstWebApp.Controllers
 		[HttpGet]
 		public IActionResult AddUser(string playerName)
 		{
-			if (!Database.Users.ContainsValue(playerName))
+			if (!dataBase.Users.ContainsValue(playerName))
 			{
-				Database.Users.Add(Guid.NewGuid(), playerName);
+				dataBase.Users.Add(Guid.NewGuid(), playerName);
 			}
 
-			this.SetCurrentPlayerNameFromSession(playerName);
+			this.SetCurrentPlayerNameFromSession(playerName, dataBase);
 
 			return RedirectToAction(nameof(Lobby));
 		}
 
 		public IActionResult EndGame()
 		{
-            if(!this.CheckSessionExist(
-            Session.SessionVariablesName.CurrentPlayerGuid |
-            Session.SessionVariablesName.EncodedField |
-            Session.SessionVariablesName.TableGuid)
+			if (!this.CheckSessionExist(
+			Session.SessionVariablesName.CurrentPlayerGuid |
+			Session.SessionVariablesName.EncodedField |
+			Session.SessionVariablesName.TableGuid)
 			)
 			{
-                return RedirectToAction(nameof(SessionExpiration));
-            }
+				return RedirectToAction(nameof(SessionExpiration));
+			}
 
-            var playerGuid = this.GetCurrentPlayerGuidFromSession() ?? Guid.Empty;
-            var field = this.GetEncodedFieldFromSession();
-            var tableGuid = this.GetTableGuidFromSession() ?? Guid.Empty;
-			var gameTableInfo = Database.Tables[tableGuid] ?? Guid.Empty;
-			var gameInfo = Database.Games[gameTableInfo] ?? new GameInfo();
+			var playerGuid = this.GetCurrentPlayerGuidFromSession() ?? Guid.Empty;
+			var field = this.GetEncodedFieldFromSession();
+			var tableGuid = this.GetTableGuidFromSession() ?? Guid.Empty;
+			var gameTableInfo = dataBase.Tables[tableGuid] ?? Guid.Empty;
+			var gameInfo = dataBase.Games[gameTableInfo] ?? new GameInfo();
 
 
-			return View(new TicTacToeModel(gameInfo, playerGuid));
-        }
+			return View(new TicTacToeModel(gameInfo, playerGuid, dataBase));
+		}
 
-        [HttpGet]
+		[HttpGet]
 		public IActionResult SessionExpiration()
 		{
 			return View();
@@ -194,14 +197,14 @@ namespace FirstWebApp.Controllers
 		[HttpGet]
 		public IActionResult Lobby()
 		{
-			var playerName = this.GetCurrentPlayerNameFromSession();
+			var playerName = this.GetCurrentPlayerNameFromSession(dataBase);
 
 			if (playerName == null)
 			{
 				return RedirectToAction(nameof(SessionExpiration));
 			}
 
-			var lobbyModel = new LobbyPageModel(playerName ?? string.Empty);
+			var lobbyModel = new LobbyPageModel(playerName ?? string.Empty, dataBase);
 
 			return View(lobbyModel);
 		}

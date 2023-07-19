@@ -1,4 +1,6 @@
-﻿namespace FirstWebApp.Models
+﻿using FirstWebApp.ServerDatabase;
+
+namespace FirstWebApp.Models
 {
     public class FieldViewDataModel : GameInfo
     {

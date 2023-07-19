@@ -1,3 +1,4 @@
+using FirstWebApp.ServerDatabase;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 
@@ -11,6 +12,8 @@ builder.Services.AddSession((config) =>
     config.Cookie.IsEssential = true;
     config.Cookie.HttpOnly = true;
 });
+
+builder.Services.AddSingleton<Database>(new Database());
 
 var app = builder.Build();
 

@@ -22,11 +22,11 @@ namespace FirstWebApp.Extentions
 			return homeController.Redirect(uri.Uri.ToString());
 		}
 
-		public static IActionResult EnroleFirstPlayer(this HomeController homeController, Guid currentPlayerGuid, Guid tableGuid, int encodedField)
+		public static IActionResult EnroleFirstPlayer(this HomeController homeController, Guid currentPlayerGuid, Guid tableGuid, int encodedField, Database database)
 		{
 			var newGameGuid = Guid.NewGuid();
-			Database.Games[newGameGuid] = new GameInfo(currentPlayerGuid, encodedField);
-			Database.Tables[tableGuid] = newGameGuid;
+			database.Games[newGameGuid] = new GameInfo(currentPlayerGuid, encodedField, database);
+			database.Tables[tableGuid] = newGameGuid;
 
 			return homeController.RedirectToAction(nameof(homeController.WaitingPlayerConnect));
 		}

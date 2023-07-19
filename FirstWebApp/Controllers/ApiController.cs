@@ -9,14 +9,20 @@ namespace FirstWebApp.Controllers
 {
     public class ApiController : Controller
     {
+        Database database;
+        public ApiController(Database database) 
+        {
+            this.database = database;
+        }
+
         public Guid[] GetTables()
         {
-            return Database.Tables.Keys.ToArray();
+            return database.Tables.Keys.ToArray();
         }
 
         public Guid[] GetUsers()
         {
-            return Database.Users.Keys.ToArray();
+            return database.Users.Keys.ToArray();
         }
 
         public class GetUserNameRequest
@@ -28,7 +34,7 @@ namespace FirstWebApp.Controllers
         [HttpPost]
         public string GetUserName([FromBody] GetUserNameRequest requestValue)
         {
-            return Database.Users[requestValue.userGuid];
+            return database.Users[requestValue.userGuid];
         }
 
         [HttpPost]
@@ -45,8 +51,8 @@ namespace FirstWebApp.Controllers
             }
 
             var tableGuid = this.GetTableGuidFromSession() ?? Guid.Empty;
-            var gameTableInfo = Database.Tables[tableGuid] ?? Guid.Empty;
-            var gameInfo = Database.Games[gameTableInfo] ?? new GameInfo();
+            var gameTableInfo = database.Tables[tableGuid] ?? Guid.Empty;
+            var gameInfo = database.Games[gameTableInfo] ?? new GameInfo();
 
             return new(isSecondPlayer: gameInfo.isSecondPlayerInGame, isSessionExpiration: false);
         }
@@ -66,10 +72,10 @@ namespace FirstWebApp.Controllers
 
             var currentPlayerGuid = this.GetCurrentPlayerGuidFromSession() ?? Guid.Empty;
             var tableGuid = this.GetTableGuidFromSession() ?? Guid.Empty;
-            var gameTableInfo = Database.Tables[tableGuid] ?? Guid.Empty;
-            var gameInfo = Database.Games[gameTableInfo] ?? new GameInfo();
+            var gameTableInfo = database.Tables[tableGuid] ?? Guid.Empty;
+            var gameInfo = database.Games[gameTableInfo] ?? new GameInfo();
 
-            TicTacToeModel gameInfoModel = new TicTacToeModel(gameInfo, currentPlayerGuid);
+            TicTacToeModel gameInfoModel = new TicTacToeModel(gameInfo, currentPlayerGuid, database);
 
             return new(isCurrentPlayerTurn: gameInfoModel.IsCurrentPlayerTurn, isSessionExpiration: false);
         }
@@ -82,7 +88,7 @@ namespace FirstWebApp.Controllers
                 return NotFound();
 			}
 
-			return this.PartialView("../Partial/LobbyTable", new LobbyTableModel(tableGuid));
+			return this.PartialView("../Partial/LobbyTable", new LobbyTableModel(tableGuid, database));
         }
     }
 }

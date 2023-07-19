@@ -5,15 +5,17 @@ namespace FirstWebApp.Models
     public class TicTacToeModel : GameInfo
     {
         public Guid CurrentPlayerGuid { get; private set; }
-        public string CurrentPlayerName => Database.Users[CurrentPlayerGuid];
+
+        public string CurrentPlayerName;
 
         public bool IsCurrentPlayerX => CurrentPlayerGuid == PlayerXGuid;
         public bool IsCurrentPlayerO => CurrentPlayerGuid == PlayerOGuid;
         public bool IsCurrentPlayerTurn => CurrentPlayerGuid == PlayerTurnGuid;
 
-        public TicTacToeModel(GameInfo gameInfo, Guid currentPlayerGuid) : base(gameInfo)
+        public TicTacToeModel(GameInfo gameInfo, Guid currentPlayerGuid, Database database) : base(gameInfo)
         {
             CurrentPlayerGuid = currentPlayerGuid;
+            CurrentPlayerName = database.Users[CurrentPlayerGuid];
         }
     }
 }

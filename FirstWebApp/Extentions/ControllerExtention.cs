@@ -6,16 +6,16 @@ namespace FirstWebApp.Extentions
 {
     public static class ControllerExtention
     {
-        public static string? GetCurrentPlayerNameFromSession(this Controller controller)
+        public static string? GetCurrentPlayerNameFromSession(this Controller controller, Database database)
         {
             var playerGuidInString = controller.HttpContext.Session.GetString(SessionVariables.CurrentPlayerGuid);
 
-            return playerGuidInString == null ? null : Database.Users[new Guid(playerGuidInString)];
+            return playerGuidInString == null ? null : database.Users[new Guid(playerGuidInString)];
         }
 
-        public static void SetCurrentPlayerNameFromSession(this Controller controller, string playerName)
+        public static void SetCurrentPlayerNameFromSession(this Controller controller, string playerName, Database database)
         {
-            var playerGuid = Database.Users.First((user) => user.Value == playerName).Key;
+            var playerGuid = database.Users.First((user) => user.Value == playerName).Key;
             
             controller.HttpContext.Session.SetString(SessionVariables.CurrentPlayerGuid, playerGuid.ToString());
         }
