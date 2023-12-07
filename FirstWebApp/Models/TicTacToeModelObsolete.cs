@@ -3,7 +3,7 @@
     [Obsolete]
     public class TicTacToeModelObsolete
     {
-        public string makeMoveName { get; set; }
+        public string? makeMoveName { get; set; }
         public string winnerName { get; set; }
         public char[] boardRandom;
         public TicTacToeModelObsolete()

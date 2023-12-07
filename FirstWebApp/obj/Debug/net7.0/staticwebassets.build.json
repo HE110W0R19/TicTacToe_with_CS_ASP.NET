@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vqFZpbSmQt71I/7/PxO4HC7v9cSgdpDacr0wbk+JN1U=",
+  "Hash": "V+Yw14mvpY5J6a5KUzYdOqkW7BYULFaB9GySjhGvJKs=",
   "Source": "FirstWebApp",
   "BasePath": "_content/FirstWebApp",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Ajax_SecondPlayer.js"
+    },
+    {
+      "Identity": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\js\\Ajax_UpdaterObserver.js",
+      "SourceId": "FirstWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\",
+      "BasePath": "_content/FirstWebApp",
+      "RelativePath": "js/Ajax_UpdaterObserver.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Ajax_UpdaterObserver.js"
     },
     {
       "Identity": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\js\\site.js",

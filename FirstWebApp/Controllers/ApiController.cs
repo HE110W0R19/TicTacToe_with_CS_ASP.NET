@@ -10,7 +10,7 @@ namespace FirstWebApp.Controllers
     public class ApiController : Controller
     {
         Database database;
-        public ApiController(Database database) 
+        public ApiController(Database database)
         {
             this.database = database;
         }

@@ -5,6 +5,8 @@ using FirstWebApp.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
+#pragma warning disable CS0612 // Тип или член устарел
+
 namespace FirstWebApp.Controllers
 {
 	public class HomeController : Controller
@@ -21,10 +23,9 @@ namespace FirstWebApp.Controllers
 		[HttpGet]
 		public IActionResult Index()
 		{
-			//var TestGame = new GameInfo(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
-
-			BoardModel.restart();
-			return View(new LoginDataModel());
+            //var TestGame = new GameInfo(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
+            BoardModel.restart();
+            return View(new LoginDataModel());
 		}
 
 		[HttpPost]
@@ -77,7 +78,7 @@ namespace FirstWebApp.Controllers
 			{
 				var gameInfo = dataBase.Games[gameGuid.Value];
 
-				if (gameInfo.isSecondPlayerInGame)
+				if (gameInfo.AllPlayerInGame)
 				{
 					return this.EnroleObserver(currentPlayerGuid, tableGuid, field);
 				}
@@ -108,10 +109,12 @@ namespace FirstWebApp.Controllers
 
 			var playerName = this.GetCurrentPlayerNameFromSession(dataBase);
 			var field = this.GetEncodedFieldFromSession();
-			//var tableGuid = this.GetTableGuidFromSession();
+            //var tableGuid = this.GetTableGuidFromSession();
 
-			BoardModel.boardInfo.boardRandom = TicTacToeUtilities.DecodeField((int)field).Cast<char>().ToArray();
-			BoardModel.boardInfo.makeMoveName = playerName;
+#pragma warning disable CS8629 // Тип значения, допускающего NULL, может быть NULL.
+            BoardModel.boardInfo.boardRandom = TicTacToeUtilities.DecodeField((int)field).Cast<char>().ToArray();
+#pragma warning restore CS8629 // Тип значения, допускающего NULL, может быть NULL.
+            BoardModel.boardInfo.makeMoveName = playerName;
 
 			return View(nameof(GamePage), BoardModel.boardInfo);
 		}
@@ -258,3 +261,5 @@ namespace FirstWebApp.Controllers
 		}
 	}
 }
+
+#pragma warning restore CS0612 // Тип или член устарел

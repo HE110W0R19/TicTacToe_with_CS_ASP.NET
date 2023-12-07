@@ -32,6 +32,25 @@ namespace FirstWebApp.Controllers
             return View(model);
         }
 
+        public IActionResult ObserverPage()
+        {
+            if (
+                !this.CheckSessionExist(
+                Session.SessionVariablesName.CurrentPlayerGuid |
+                Session.SessionVariablesName.EncodedField |
+                Session.SessionVariablesName.TableGuid)
+            )
+            {
+                return RedirectToAction("SessionExpiration", "Home");
+            }
+
+            var currentPlayerGuid = this.GetCurrentPlayerGuidFromSession() ?? Guid.Empty;
+            var tableGuid = this.GetTableGuidFromSession() ?? Guid.Empty;
+            var gameInfo = this.GetCurrentGameInfo(tableGuid, dataBase);
+            var model = new TicTacToeModel(gameInfo, currentPlayerGuid, dataBase);
+            return View(model);
+        }
+
         [HttpPost]
         public IActionResult Turn(int fieldIndex)
         {

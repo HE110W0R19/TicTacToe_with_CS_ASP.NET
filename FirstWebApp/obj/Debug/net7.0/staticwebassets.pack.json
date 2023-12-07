@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\js\\Ajax_SecondPlayer.js"
     },
     {
+      "Id": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\js\\Ajax_UpdaterObserver.js",
+      "PackagePath": "staticwebassets\\js\\Ajax_UpdaterObserver.js"
+    },
+    {
       "Id": "C:\\Users\\TuF\\Documents\\GitHub\\TicTacToe_with_CS_ASP.NET\\FirstWebApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

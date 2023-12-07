@@ -1,0 +1,27 @@
+﻿@model TicTacToeModel
+
+<style>
+
+	.View-Table-For-Observer
+	{
+		margin: 0 auto;
+		background-color: blanchedalmond;
+		height: fit-content;
+		width: fit-content;
+		border: 2px solid black;
+		padding: 10px;
+	}
+
+</style>
+
+<div class="View-Table-For-Observer">
+	<h3>
+		X player: @Model.PlayerXName
+	</h3>
+	<h3>
+		O player: @Model.PlayerOName
+	</h3>
+	<div>
+		@await Html.PartialAsync("../Partial/FieldViewForObserver", new FieldViewDataModel(Model, !Model.IsCurrentPlayerTurn))
+	</div>
+</div>

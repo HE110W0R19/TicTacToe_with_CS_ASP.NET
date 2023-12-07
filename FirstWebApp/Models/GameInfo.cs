@@ -27,6 +27,8 @@ namespace FirstWebApp.Models
 		public string PlayerOName => database.Users[PlayerOGuid];
 		public string PlayerXName => database.Users[PlayerXGuid];
 
+		public bool AllPlayerInGame => PlayerOGuid != Guid.Empty && PlayerXGuid != Guid.Empty;
+
 		public bool IsWinnerLeftDiagonal {
 			get
 			{

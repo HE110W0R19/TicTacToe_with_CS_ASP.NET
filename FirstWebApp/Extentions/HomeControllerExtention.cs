@@ -39,7 +39,7 @@ namespace FirstWebApp.Extentions
 
 		public static IActionResult EnroleObserver(this HomeController homeController, Guid currentPlayerGuid, Guid tableGuid, int field)
 		{
-			throw new NotImplementedException();
-		}
+            return homeController.RedirectToAction("ObserverPage", nameof(GamesController).Replace("Controller", ""));
+        }
 	}
 }
